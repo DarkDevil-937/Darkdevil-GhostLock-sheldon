@@ -1,0 +1,28 @@
+name: Build GhostLock
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r29
+          add-to-path: true
+
+      - name: Build
+        run: make
+        env:
+          NDK: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghostlock-sheldon-binary
+          path: ghostlock
