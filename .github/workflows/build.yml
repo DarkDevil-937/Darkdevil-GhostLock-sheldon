@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ghostlock-sheldon-binary
-        path: build/ghostlock_root
+          path: build/ghostlock_root
